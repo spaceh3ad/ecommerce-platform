@@ -1,0 +1,151 @@
+{
+    "methods": {
+        "addOrder(string,uint256)": {
+            "stateMutability": "nonpayable",
+            "code": "function addOrder(string _productName, uint256 _price) external nonpayable returns (uint256 _orderId)",
+            "inputs": {
+                "_productName": {
+                    "type": "string",
+                    "description": "The name of the product for the order."
+                },
+                "_price": {
+                    "type": "uint256",
+                    "description": "The price of the product for the order."
+                }
+            },
+            "outputs": {
+                "_orderId": {
+                    "type": "uint256",
+                    "description": "The ID of the newly added order."
+                }
+            },
+            "details": "Adds a new order to the orderMapping."
+        },
+        "admin()": {
+            "stateMutability": "view",
+            "code": "function admin() external view returns (address)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "address"
+                }
+            }
+        },
+        "getOrderInfo(uint256)": {
+            "stateMutability": "view",
+            "code": "function getOrderInfo(uint256 _orderId) external view returns (struct OrderManagerLib.Order)",
+            "inputs": {
+                "_orderId": {
+                    "type": "uint256",
+                    "description": "The ID of the order to retrieve information for."
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "OrderManagerLib.Order",
+                    "description": "OrderManagerLib.Order The order information."
+                }
+            },
+            "details": "Retrieves the order information for a given order ID."
+        },
+        "orderId()": {
+            "stateMutability": "view",
+            "code": "function orderId() external view returns (uint256)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            }
+        },
+        "orderMapping(uint256)": {
+            "stateMutability": "view",
+            "code": "function orderMapping(uint256) external view returns (uint256 orderId, string productName, uint256 price, enum OrderManagerLib.OrderStatus status, uint256 timestamp, address orderOwner)",
+            "inputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            },
+            "outputs": {
+                "orderId": {
+                    "type": "uint256"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "uint256"
+                },
+                "status": {
+                    "type": "enum OrderManagerLib.OrderStatus"
+                },
+                "timestamp": {
+                    "type": "uint256"
+                },
+                "orderOwner": {
+                    "type": "address"
+                }
+            }
+        },
+        "updateOrder(uint256,uint8)": {
+            "stateMutability": "nonpayable",
+            "code": "function updateOrder(uint256 _orderId, enum OrderManagerLib.OrderStatus _orderStatus) external nonpayable returns (bool)",
+            "inputs": {
+                "_orderId": {
+                    "type": "uint256",
+                    "description": "The ID of the order to update."
+                },
+                "_orderStatus": {
+                    "type": "enum OrderManagerLib.OrderStatus",
+                    "description": "The new status of the order."
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "bool",
+                    "description": "bool A boolean indicating whether the update was successful."
+                }
+            },
+            "details": "Updates the status of an order.Throws an exception if the caller is not the admin or the order owner."
+        }
+    },
+    "events": {
+        "OrderAdded": {
+            "code": "event OrderAdded(uint256 orderId)",
+            "inputs": {
+                "orderId": {
+                    "type": "uint256",
+                    "indexed": false
+                }
+            }
+        },
+        "OrderUpdated": {
+            "code": "event OrderUpdated(uint256 orderId, enum OrderManagerLib.OrderStatus status)",
+            "inputs": {
+                "orderId": {
+                    "type": "uint256",
+                    "indexed": false
+                },
+                "status": {
+                    "type": "enum OrderManagerLib.OrderStatus",
+                    "indexed": false
+                }
+            }
+        }
+    },
+    "errors": {
+        "NotPrivilegedAccount": {
+            "code": "error NotPrivilegedAccount(address from, address orderOwner)",
+            "inputs": {
+                "from": {
+                    "type": "address"
+                },
+                "orderOwner": {
+                    "type": "address"
+                }
+            }
+        }
+    },
+    "path": "",
+    "name": "OrderManager"
+}

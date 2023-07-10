@@ -1,0 +1,50 @@
+{
+    "methods": {},
+    "events": {
+        "OrderAdded": {
+            "code": "event OrderAdded(uint256 orderId)",
+            "inputs": {
+                "orderId": {
+                    "type": "uint256",
+                    "indexed": false
+                }
+            }
+        },
+        "OrderUpdated": {
+            "code": "event OrderUpdated(uint256 orderId, enum OrderManagerLib.OrderStatus status)",
+            "inputs": {
+                "orderId": {
+                    "type": "uint256",
+                    "indexed": false
+                },
+                "status": {
+                    "type": "enum OrderManagerLib.OrderStatus",
+                    "indexed": false
+                }
+            }
+        }
+    },
+    "errors": {
+        "InvalidOrderId": {
+            "code": "error InvalidOrderId(uint256 orderId)",
+            "inputs": {
+                "orderId": {
+                    "type": "uint256"
+                }
+            }
+        },
+        "NotPrivilegedAccount": {
+            "code": "error NotPrivilegedAccount(address from, address orderOwner)",
+            "inputs": {
+                "from": {
+                    "type": "address"
+                },
+                "orderOwner": {
+                    "type": "address"
+                }
+            }
+        }
+    },
+    "path": "",
+    "name": "OrderManagerLib"
+}
